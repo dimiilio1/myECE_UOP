@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".courses.CourseFragmentDetails"
+    >
+
+
+    <TextView
+        android:id="@+id/oldcoursecode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:text="Κωδικός: "
+        android:textSize="17sp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tei_idview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="16dp"
+        android:text="cied000"
+        android:textSize="17sp"
+
+        app:layout_constraintStart_toEndOf="@+id/oldcoursecode"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tei_coursetitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="16dp"
+        android:text="Μάθημα: "
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oldcoursecode" />
+
+    <TextView
+        android:id="@+id/teicourceview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Εισαγωγή στα Πληροφοριακά Συστήματα"
+        android:lineSpacingExtra="8sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tei_coursetitle"
+        app:layout_constraintTop_toBottomOf="@+id/tei_idview" />
+
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+
+        android:src="@drawable/ic_arrow_result"
+        android:layout_marginTop="16dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/teicourceview" />
+    <TextView
+        android:id="@+id/newcoursecode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Κωδικός: "
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/arrow" />
+
+    <TextView
+        android:id="@+id/hmmy_idview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="15dp"
+        android:text="cied000"
+        android:textSize="17sp"
+        app:layout_constraintStart_toEndOf="@+id/newcoursecode"
+        app:layout_constraintTop_toBottomOf="@+id/arrow" />
+    <TextView
+        android:id="@+id/hmmy_coursetitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:text="Μάθημα: "
+        android:textSize="17sp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newcoursecode" />
+
+    <TextView
+        android:id="@+id/hmmytitleview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="16dp"
+        android:text="Εισαγωγή στα Πληροφοριακά Συστήματα"
+        android:lineSpacingExtra="8sp"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/hmmy_coursetitle"
+        app:layout_constraintTop_toBottomOf="@+id/hmmy_idview" />
+
+    <TextView
+        android:id="@+id/newcoursesemester"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:text="Εξάμηνο: "
+        android:textSize="17sp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hmmytitleview" />
+
+    <TextView
+        android:id="@+id/hmmy_semesterview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:text="3"
+        android:textSize="17sp"
+
+        app:layout_constraintStart_toEndOf="@+id/newcoursecode"
+        app:layout_constraintTop_toBottomOf="@+id/hmmytitleview" />
+
+    <TextView
+        android:id="@+id/newcoursehour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:text="Ώρες Θεωρίας: "
+        android:textSize="17sp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newcoursesemester" />
+
+    <TextView
+        android:id="@+id/hmmy_hoursview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:text="3"
+        android:textSize="17sp"
+        app:layout_constraintStart_toEndOf="@+id/newcoursehour"
+        app:layout_constraintTop_toBottomOf="@+id/hmmy_semesterview" />
+
+    <TextView
+        android:id="@+id/newcourselab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:text="Ώρες Εργαστηρίου: "
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newcoursehour" />
+
+    <TextView
+        android:id="@+id/hmmy_labview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:text="3"
+        android:textSize="17sp"
+
+        app:layout_constraintStart_toEndOf="@+id/newcourselab"
+        app:layout_constraintTop_toBottomOf="@+id/hmmy_hoursview" />
+
+    <TextView
+        android:id="@+id/newcoursetutoring"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="22dp"
+        android:text="Ώρες Φροντηστηρίου: "
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newcourselab" />
+
+    <TextView
+        android:id="@+id/hmmy_tutoringview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:text="3"
+        android:textSize="17sp"
+
+        app:layout_constraintStart_toEndOf="@+id/newcoursetutoring"
+        app:layout_constraintTop_toBottomOf="@+id/hmmy_labview" />
+    <TextView
+        android:id="@+id/endhelper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="22dp"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newcoursetutoring" />
+</androidx.constraintlayout.widget.ConstraintLayout>

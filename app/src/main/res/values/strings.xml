@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">MyECE UOP</string>
+
+    <!-- Simple text Strings -->
+
+    <string name="community_disc">Διάλεξε ένα από τα παρακάτω για να μάθεις περισσότερα </string>
+    <string name="professor">Καθηγητής.</string>
+    <string name="associate_professor">Αναπληρωτής Καθηγητής.</string>
+    <string name="assistance_professor">Επίκουρος Καθηγητής.</string>
+    <string name="lecturer">Λέκτορας.</string>
+    <string name="about">Η εφαρμογή δημιουργήθηκε για τους φοιτητές του τμήματος Ηλεκτρολόγων Μηχανικών και Μηχανικών Υπολογιστών</string>
+    <string name="about_the_app">- Nα ενημερωθείς σχετικά με τις τελευταίες ανακοινώσεις που ανεβαίνουν στην επίσημη ιστοσελίδα του τμήματος \n\n- Να βρεις εύκολα τις πληροφορίες που χρειάζεσαι για τους καθηγητές \n\n- Nα μάθεις πληροφορίες σχετικά με το Ακαδημαϊκό Ημερολόγιο \n\n- Nα καθοδηγηθείς στην Πανεπιστημιούπολη \n\n- Να αναζητήσεις τις αντιστοιχίσεις από τα παλιά μαθήματα των Μηχανικών Πληροφορικής Τ.Ε και Ηλεκρολόγων Μηχανικών Τ.Ε \n\n- Να μοιραστείς σημειώσεις διαλέξεων και εργαστηρίων \n\n- Να συνδεθείς με φοιτητικές κοινότητες που υπάρχουν</string>
+    <string name="calendar">Ακαδημαικό Ημερολόγιο</string>
+    <string name="calendar_title">Tο ακαδημαϊκό ημερολόγιο του έτους 2021 – 2022, έχει ως εξής:</string>
+    <string name="winter_semester">Χειμερινό Εξάμηνο</string>
+    <string name="winter_semester_details">- Έναρξη μαθημάτων: 11.10.2021 \n- Ολοκλήρωση μαθημάτων και αναπληρώσεων: 28.01.2022 \n- Έναρξη εξεταστικής περιόδου: 31.01.2022 \n- Λήξη εξεταστικής περιόδου: 18.02.2022</string>
+    <string name="summer_semester">Εαρινό Εξάμηνο</string>
+    <string name="summer_semester_details">- Έναρξη μαθημάτων: 24.02.2022\n- Ολοκλήρωση μαθημάτων και αναπληρώσεων: 17.06.2022\n- Έναρξη εξεταστικής περιόδου: 20.06.2022\n- Λήξη εξεταστικής περιόδου: 08.07.2022</string>
+    <string name="retake_exams">Επαναληπτική Εξεταστική</string>
+    <string name="retake_exams_details">- Έναρξη: 29.08.2022\n- Λήξη: 23.09.2022</string>
+    <string name="weekly_schedule">Ωρολόγιο Πρόγραμμα &amp; Εξεταστικές</string>
+    <string name="CIED">ΠΛΗ</string>
+    <string name="ELE">ΗΛΕ</string>
+    <string name="ΗΜΜΥ">ΗΜΜΥ</string>
+    <string name="secretary">Γραμματεία</string>
+    <string name="secretary_title_info">Η Γραμματεία του Τμήματος στεγάζεται στο ισόγειο του Κεντρικού Κτηρίου της Σχολής Μηχανικών</string>
+    <string name="Aktupis_secreteray"><u>Ακτύπης Κωνσταντίνος-Γεράσιμος</u></string>
+    <string name="Likoudi_secretary"><u>Λυκούδη Ρουμπίνα – Ελένη</u></string>
+    <string name="Mallopoulou_secretary"><u>Μαλλοπούλου Μαρία</u></string>
+    <string name="patsogianni_secretary"><u>Πατσογιάννη Αλεξάνδρα</u></string>
+    <string name="info2_secretary">- Προσοχή: Δεν θα απαντώνται μηνύματα φοιτητών, τα οποία: (α) Δεν αποστέλλονται από τον λογαριασμό email που σας έχει δώσει το Τμήμα, (β) Δεν υπογράφονται με το ονοματεπώνυμο του φοιτητή/φοιτήτριας και (γ) Είναι γραμμένα σε greeklish.</string>
+    <string name="read_more_about">Διαβάστε Περισσότερα</string>
+
+
+</resources>

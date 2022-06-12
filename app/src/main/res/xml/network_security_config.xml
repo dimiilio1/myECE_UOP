@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">ece.uop.gr</domain>
+        <trust-anchors>
+            <certificates src="@raw/ca"/>
+            <certificates src="@raw/ece_uop_gr"/>
+            <certificates src="@raw/ece_uop_gr_1"/>
+            <certificates src="@raw/mycert"/>
+        </trust-anchors>
+    </domain-config>
+</network-security-config>
