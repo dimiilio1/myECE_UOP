@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:text="Αντιστοιχίσεις"
         android:textColor="@color/df_red"
-        android:layout_marginTop="16dp"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

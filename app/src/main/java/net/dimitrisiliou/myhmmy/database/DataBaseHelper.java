@@ -273,17 +273,21 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean addOne(NewsModel rssModel) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put(RSS_ID_LINK, rssModel.getLink_id());
-        cv.put(RSS_TITLE, rssModel.getTitle());
-        cv.put(RSS_DATE, String.valueOf(rssModel.getPubDate()));
-        cv.put(RSS_CONTEXT, rssModel.getContext());
-        cv.put(RSS_COUNTER, rssModel.getCounter());
 
-        db.insert(RSS_TABLE,null, cv);
-        db.close();
-        return true;
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues cv = new ContentValues();
+            cv.put(RSS_ID_LINK, rssModel.getLink_id());
+            cv.put(RSS_TITLE, rssModel.getTitle());
+            cv.put(RSS_DATE, String.valueOf(rssModel.getPubDate()));
+            cv.put(RSS_CONTEXT, rssModel.getContext());
+            cv.put(RSS_COUNTER, rssModel.getCounter());
+
+            db.insert(RSS_TABLE, null, cv);
+            db.close();
+            return true;
+        }catch (Exception x){ return true;}
+
     }
 
     public ArrayList<HashMap<String, String>> getAllRss() {
