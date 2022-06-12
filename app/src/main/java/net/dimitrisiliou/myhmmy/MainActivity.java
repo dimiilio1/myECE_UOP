@@ -182,12 +182,11 @@ public class MainActivity extends AppCompatActivity implements Callback {
 
 
     public void scheduleJob() {
-        @SuppressLint("JobSchedulerService") ComponentName componentName = new ComponentName((this), AppJobService.class);
+        ComponentName componentName = new ComponentName((this), AppJobService.class);
         JobInfo info = new JobInfo.Builder(123, componentName)
-                .setPeriodic(6*1000)
+                .setPeriodic(15*60*1000)
                 .setRequiresCharging(false)
                 .setPersisted(true)
-                .setRequiresBatteryNotLow(true)
                 .build();
         JobScheduler scheduler = (JobScheduler) this.getSystemService(JOB_SCHEDULER_SERVICE);
         int resultCode = scheduler.schedule(info);

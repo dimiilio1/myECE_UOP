@@ -56,8 +56,9 @@ public class AppJobService extends JobService {
     NewsModel newsModel;
     JobScheduler jobScheduler;
     private static final String TAG = "teeeeeeeeeeeeeeeeeeesting";
-
+    DataBaseHelper dataBaseHelper;
     private boolean jobCancelled = false;
+
     @Override
     public boolean onStartJob(JobParameters params) {
         //turn on the notifications
@@ -73,19 +74,47 @@ public class AppJobService extends JobService {
         doBackgroundWork(params);
         return true;
     }
-    private void doBackgroundWork(final JobParameters params) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                // do something here
-                jobScheduler = (JobScheduler)getSystemService(JOB_SCHEDULER_SERVICE);
-                checkForNewAnnouncements();
-                if (jobCancelled) {
-                    return;
-                }
-                Log.d(TAG, "Rss finished");
-                jobFinished(params, false);
+    private void doBackgroundWork(JobParameters params) {
+        new Thread(() -> {
+            DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
+            getDataFromWeb(); // updates the articles but NOT the counter in the database
+            SystemClock.sleep(5000);
+            ArrayList<HashMap<String, String>> newsArray = dbHelper.getAllRss(); //gets all the new articles from the database
+            int newsCounter = newsArray.size(); // gets the size of that array
+            int previousNewsCounter = Integer.parseInt(dbHelper.getSettings("NEWS_COUNTER")); //gets the counter from the last time the user launched the app
+            Log.d("newsCounter", String.valueOf(newsCounter));
+            Log.d("previousNewsCounter", String.valueOf(previousNewsCounter));
+
+            if (  newsCounter > previousNewsCounter) {
+                int newNumber =   (newsCounter - previousNewsCounter) - 1 ;
+                Log.d("newNumber", String.valueOf(newNumber));
+                do{
+                    Intent intent = new Intent(this, MainActivity.class);
+                    PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent,
+                            PendingIntent.FLAG_UPDATE_CURRENT);
+                    Log.d("inside DO-WHILE", String.valueOf(newNumber));
+                    notificationIntent.setData(Uri.parse((newsArray.get(newNumber).get("link"))));
+                    stackBuilder = TaskStackBuilder.create(this);
+                    stackBuilder.addNextIntentWithParentStack(notificationIntent);
+                    resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+                    builder = new NotificationCompat.Builder(this,"newNumber")
+                            .setSmallIcon(R.drawable.ic_rss)
+                            .setContentTitle("Νέα Ανακοίνωση")
+                            .setContentText( newsArray.get(newNumber).get("title"))
+                            .setGroup("newNumber1")
+                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                            .setContentIntent(pIntent);
+                    notificationManager = NotificationManagerCompat.from(this);
+                    notificationManager.notify(notificationID,builder.build());
+                    notificationID++;
+                    newNumber--;
+                } while (newNumber  >= 0);
+
             }
+            dbHelper.changeSetting("NEWS_COUNTER", String.valueOf(newsArray.size())); //UPDATES THE COUNTER AFTER NOTIFYING THE USER
+            Log.d(TAG, "Rss scannning");
+            jobFinished(params, true);
+            Log.d(TAG, "Rss finished");
         }).start();
     }
     @Override
@@ -95,47 +124,9 @@ public class AppJobService extends JobService {
         jobCancelled = true;
         return true;
     }
-
-    @SuppressLint("LongLogTag")
     private void checkForNewAnnouncements(){
 
-        DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
-        getDataFromWeb(); // updates the articles but NOT the counter in the database
-        SystemClock.sleep(10000);
-        ArrayList<HashMap<String, String>> newsArray = dbHelper.getAllRss(); //gets all the new articles from the database
-        int newsCounter = newsArray.size(); // gets the size of that array
-        int previousNewsCounter = Integer.parseInt(dbHelper.getSettings("NEWS_COUNTER")); //gets the counter from the last time the user launched the app
-        Log.d("newsCounter", String.valueOf(newsCounter));
-        Log.d("previousNewsCounter", String.valueOf(previousNewsCounter));
 
-        if (  newsCounter > previousNewsCounter) {
-            int newNumber =   (newsCounter - previousNewsCounter) - 1 ;
-            Log.d("newNumber", String.valueOf(newNumber));
-            do{
-                Intent intent = new Intent(this, MainActivity.class);
-                PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent,
-                        PendingIntent.FLAG_UPDATE_CURRENT);
-                Log.d("inside DO-WHILE", String.valueOf(newNumber));
-                notificationIntent.setData(Uri.parse((newsArray.get(newNumber).get("link"))));
-                stackBuilder = TaskStackBuilder.create(this);
-                stackBuilder.addNextIntentWithParentStack(notificationIntent);
-                resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-                builder = new NotificationCompat.Builder(this,"newNumber")
-                        .setSmallIcon(R.drawable.ic_rss)
-                        .setContentTitle("Νέα Ανακοίνωση")
-                        .setContentText( newsArray.get(newNumber).get("title"))
-                        .setGroup("newNumber1")
-                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                        .setContentIntent(pIntent);
-                notificationManager = NotificationManagerCompat.from(this);
-                notificationManager.notify(notificationID,builder.build());
-                notificationID++;
-                newNumber--;
-            } while (newNumber  >= 0);
-
-        }
-        dbHelper.changeSetting("NEWS_COUNTER", String.valueOf(newsArray.size())); //UPDATES THE COUNTER AFTER NOTIFYING THE USER
-        Log.d(TAG, "Rss scannning");
     }
 
     private void createNotificationChannel()  {
@@ -195,6 +186,8 @@ public class AppJobService extends JobService {
         private ArrayList<HashMap<String, String>> parseXML(InputStream inputStream)
                 throws ParserConfigurationException, IOException, SAXException, ParseException {
 
+            DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
+
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(inputStream);
@@ -205,60 +198,54 @@ public class AppJobService extends JobService {
 
             Node currentItem;
             Node currentChild;
-            int newsCounter = 0;
+            String link =null;
+            String title = null;
+            String pubDate = null;
+            String content = null;
+            int newsCounter= 0;
 
-            ArrayList<HashMap<String, String>> items = new ArrayList<>();
-            HashMap<String, String> currentMap;
+            ArrayList<HashMap<String, String>> items = new ArrayList<>(); //the one that returns at the end of the execution
+            HashMap<String, String> currentMap; //supported hashmap
 
-            for (int i = itemlist.getLength() ; i > 0; i--) {
+            for (int i = itemlist.getLength() -1  ; i > -1 ; i--) { //for each article
                 try {
                     currentItem = itemlist.item(i);
                     itemChildren = currentItem.getChildNodes();
-
-
                     currentMap = new HashMap<>();
 
-                    for (int j = 0; j < itemChildren.getLength(); j++) {
-
+                    for (int j = 0; j < itemChildren.getLength(); j++) { //for each tag inside the article
                         currentChild = itemChildren.item(j);
 
                         if (currentChild.getNodeName().equalsIgnoreCase("title")) {
                             // Log.d("Title", String.valueOf(currentChild.getTextContent()));
                             currentMap.put("title", currentChild.getTextContent());
+                            title = (String) currentChild.getTextContent();
                         }
-
-                        if (currentChild.getNodeName().equalsIgnoreCase("content:encoded")) {
+                        if (currentChild.getNodeName().equalsIgnoreCase("content:encoded")) { //content for a future use
                             // Log.d("description", String.valueOf(currentChild.getTextContent()));
                             currentMap.put("content:encoded", currentChild.getTextContent());
+                            content = (String) currentChild.getTextContent();
                         }
-
                         if (currentChild.getNodeName().equalsIgnoreCase("pubDate")) {
                             // Log.d("Title", String.valueOf(currentChild.getTextContent()));
                             currentMap.put("pubDate", currentChild.getTextContent());
-                        }
+                            pubDate = (String) currentChild.getTextContent();
 
+                        }
                         if (currentChild.getNodeName().equalsIgnoreCase("link")) {
                             currentMap.put("link", currentChild.getTextContent());
+                            link = (String) currentChild.getTextContent();
                         }
-
                     }
                     if (!currentMap.isEmpty()) {
                         items.add(currentMap);
-                        String link = (String) currentMap.get("link");
-                        String title = (String) currentMap.get("title");
-                        String pubDate = (String) currentMap.get("pubDate");
-                        String content = (String) currentMap.get("content:encoded");
-
-                        DataBaseHelper dataBaseHelper = new DataBaseHelper(getApplicationContext());
-                        newsModel = new NewsModel(link, title, pubDate, content, newsCounter);
-                        dataBaseHelper.addOne(newsModel);
-                        dataBaseHelper.addOne(newsModel);
-
+                        newsModel = new NewsModel(link, title, pubDate, content, newsCounter); //category for a future use
+                        dbHelper.addOne(newsModel); //adds each new item in the database
                     }
-                    DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
+
                     ArrayList<HashMap<String, String>> newsArray = dbHelper.getAllRss(); //gets all the new articles from the database
                     newsCounter = newsArray.size(); // gets the size of that array
-                } catch (Exception e) {
+                }catch (Exception e){
                     StringWriter sw = new StringWriter();
                     e.printStackTrace(new PrintWriter(sw));
                     String errors = sw.toString();
@@ -271,7 +258,6 @@ public class AppJobService extends JobService {
                     e.printStackTrace();
                 }
             }
-
             return items;
         }
     }
