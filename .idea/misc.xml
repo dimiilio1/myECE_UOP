@@ -3,6 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/jimil/Documents/GitHub/myECE_UOP/app/src/main/res/drawable/oval.xml" value="0.1" />
+        <entry key="..\:/Users/jimil/Documents/GitHub/myECE_UOP/app/src/main/res/layout/activity_main.xml" value="0.15925925925925927" />
+        <entry key="..\:/Users/jimil/Documents/GitHub/myECE_UOP/app/src/main/res/layout/activity_welcome.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/jimil/Documents/GitHub/myECE_UOP/app/src/main/res/layout/content_welcome.xml" value="0.16210739614994935" />
+        <entry key="..\:/Users/jimil/Documents/GitHub/myECE_UOP/app/src/main/res/layout/course_matching_item.xml" value="0.16210739614994935" />
+        <entry key="..\:/Users/jimil/Documents/GitHub/myECE_UOP/app/src/main/res/layout/fragment_about.xml" value="0.16210739614994935" />
+        <entry key="..\:/Users/jimil/Documents/GitHub/myECE_UOP/app/src/main/res/layout/fragment_calendar.xml" value="0.16210739614994935" />
+        <entry key="..\:/Users/jimil/Documents/GitHub/myECE_UOP/app/src/main/res/layout/fragment_community.xml" value="0.16210739614994935" />
+        <entry key="..\:/Users/jimil/Documents/GitHub/myECE_UOP/app/src/main/res/layout/fragment_community_details.xml" value="0.16210739614994935" />
+        <entry key="..\:/Users/jimil/Documents/GitHub/myECE_UOP/app/src/main/res/layout/fragment_courses.xml" value="0.16210739614994935" />
+        <entry key="..\:/Users/jimil/Documents/GitHub/myECE_UOP/app/src/main/res/layout/fragment_courses_details.xml" value="0.16210739614994935" />
+        <entry key="..\:/Users/jimil/Documents/GitHub/myECE_UOP/app/src/main/res/layout/fragment_extrastudies.xml" value="0.16210739614994935" />
+        <entry key="..\:/Users/jimil/Documents/GitHub/myECE_UOP/app/src/main/res/layout/fragment_map.xml" value="0.16210739614994935" />
+        <entry key="..\:/Users/jimil/Documents/GitHub/myECE_UOP/app/src/main/res/layout/fragment_news.xml" value="0.16210739614994935" />
+        <entry key="..\:/Users/jimil/Documents/GitHub/myECE_UOP/app/src/main/res/layout/fragment_professors.xml" value="0.16210739614994935" />
+        <entry key="..\:/Users/jimil/Documents/GitHub/myECE_UOP/app/src/main/res/layout/fragment_secretary.xml" value="0.16210739614994935" />
+        <entry key="..\:/Users/jimil/Documents/GitHub/myECE_UOP/app/src/main/res/layout/fragment_settings.xml" value="0.16210739614994935" />
+        <entry key="..\:/Users/jimil/Documents/GitHub/myECE_UOP/app/src/main/res/layout/item_map.xml" value="0.16210739614994935" />
+        <entry key="..\:/Users/jimil/Documents/GitHub/myECE_UOP/app/src/main/res/layout/item_menu.xml" value="0.16210739614994935" />
         <entry key="..\:/Users/jimil/Documents/Projects/app/src/main/res/drawable/oval.xml" value="0.2921875" />
         <entry key="..\:/Users/jimil/Documents/Projects/app/src/main/res/drawable/team_card_bg.xml" value="0.3546875" />
         <entry key="..\:/Users/jimil/Documents/Projects/app/src/main/res/layout/activity_main.xml" value="0.2630208333333333" />
