@@ -313,8 +313,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
             } while (cursor.moveToNext());
-
-
         }
         cursor.close();
         db.close();
