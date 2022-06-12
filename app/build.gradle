@@ -13,8 +13,8 @@ android {
         applicationId "net.dimitrisiliou.myhmmy"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 7
-        versionName "1.7"
+        versionCode 9
+        versionName "1.9"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
